@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Create Account | SkillBridge</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<header>
+
+    <div class="logo">
+        Skill<span>Bridge</span>
+    </div>
+
+    <nav>
+        <a href="/">Home</a>
+        <a href="/login">Login</a>
+    </nav>
+
+</header>
+
+
+<main class="container">
+
+    <div class="card form-box">
+
+        <div class="badge">
+            JOIN SKILLBRIDGE
+        </div>
+
+        <h1>Create Account</h1>
+
+        <p style="color:#cbd5e1; margin-bottom:30px;">
+            Create your student account and start your career journey.
+        </p>
+
+
+        <form method="POST" action="/register">
+
+            <div class="form-group">
+
+                <label>Your Name</label>
+
+                <input
+                    type="text"
+                    name="name"
+                    placeholder="Enter your name"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>Email Address</label>
+
+                <input
+                    type="email"
+                    name="email"
+                    placeholder="Enter your email"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>Password</label>
+
+                <input
+                    type="password"
+                    name="password"
+                    placeholder="Create a password"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>Education</label>
+
+                <input
+                    type="text"
+                    name="education"
+                    placeholder="Example: B.Tech Computer Science"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>Your Skills</label>
+
+                <textarea
+                    name="skills"
+                    placeholder="Example: Python, HTML, CSS"
+                ></textarea>
+
+            </div>
+
+
+            <button type="submit" class="btn full-btn">
+                Create Account
+            </button>
+
+        </form>
+
+
+        <p style="text-align:center; margin-top:25px; color:#cbd5e1;">
+
+            Already have an account?
+
+            <a href="/login"
+               style="color:#a78bfa;">
+                Login
+            </a>
+
+        </p>
+
+    </div>
+
+</main>
+
+
+<footer>
+
+    <p>© 2026 SkillBridge</p>
+
+</footer>
+
+</body>
+
+</html>
+

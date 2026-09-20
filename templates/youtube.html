@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>YouTube Learning | SkillBridge</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+
+<body>
+
+<header>
+
+    <div class="logo">
+        Skill<span>Bridge</span>
+    </div>
+
+    <nav>
+
+        <a href="/dashboard">
+            Dashboard
+        </a>
+
+        <a href="/skills">
+            Learn Skills
+        </a>
+
+        <a href="/logout">
+            Logout
+        </a>
+
+    </nav>
+
+</header>
+
+
+<main class="container dashboard">
+
+    <div class="badge">
+        📺 YOUTUBE LEARNING
+    </div>
+
+    <h1>
+        Learn from YouTube
+    </h1>
+
+    <p style="color:#cbd5e1; font-size:18px; line-height:1.6;">
+        Search for tutorials, courses and practical lessons
+        for the skills you want to develop.
+    </p>
+
+
+    <!-- SEARCH -->
+
+    <div class="card" style="margin-top:30px;">
+
+        <form method="GET" action="/youtube">
+
+            <div class="form-group">
+
+                <label>
+                    Search YouTube
+                </label>
+
+                <input
+                    type="text"
+                    name="q"
+                    value="{{ query }}"
+                    placeholder="Example: Python for beginners"
+                    required
+                >
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="btn">
+
+                🔎 Search YouTube
+
+            </button>
+
+        </form>
+
+    </div>
+
+
+    {% if query %}
+
+    <!-- RESULT -->
+
+    <section style="margin-top:40px;">
+
+        <div class="badge">
+            LEARNING RESOURCE
+        </div>
+
+
+        <div class="card" style="margin-top:20px;">
+
+            <div class="icon">
+                ▶️
+            </div>
+
+            <h2>
+                YouTube results for "{{ query }}"
+            </h2>
+
+            <p style="color:#cbd5e1; line-height:1.6; margin:15px 0;">
+                Find tutorials, explanations, projects and
+                other learning videos related to your search.
+            </p>
+
+
+            <a
+                href="{{ video_url }}"
+                target="_blank"
+                class="btn">
+
+                ▶️ Open YouTube Results
+
+            </a>
+
+        </div>
+
+    </section>
+
+    {% endif %}
+
+
+    <!-- POPULAR SKILLS -->
+
+    <section style="margin-top:50px;">
+
+        <div class="badge">
+            POPULAR SKILLS
+        </div>
+
+        <div class="dashboard-grid">
+
+
+            <div class="card dashboard-card">
+
+                <div class="icon">
+                    🐍
+                </div>
+
+                <h2>
+                    Python
+                </h2>
+
+                <p style="color:#cbd5e1; margin:15px 0;">
+                    Programming and software development.
+                </p>
+
+                <a
+                    href="/youtube?q=Python+for+beginners"
+                    class="btn">
+
+                    Learn Python
+
+                </a>
+
+            </div>
+
+
+            <div class="card dashboard-card">
+
+                <div class="icon">
+                    🌐
+                </div>
+
+                <h2>
+                    Web Development
+                </h2>
+
+                <p style="color:#cbd5e1; margin:15px 0;">
+                    HTML, CSS, JavaScript and websites.
+                </p>
+
+                <a
+                    href="/youtube?q=Web+Development+for+beginners"
+                    class="btn">
+
+                    Learn Web Development
+
+                </a>
+
+            </div>
+
+
+            <div class="card dashboard-card">
+
+                <div class="icon">
+                    📊
+                </div>
+
+                <h2>
+                    Data Analytics
+                </h2>
+
+                <p style="color:#cbd5e1; margin:15px 0;">
+                    Learn data analysis and visualization.
+                </p>
+
+                <a
+                    href="/youtube?q=Data+Analytics+for+beginners"
+                    class="btn">
+
+                    Learn Data Analytics
+
+                </a>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+</main>
+
+
+<footer>
+
+    <p>
+        © 2026 SkillBridge
+    </p>
+
+    <p>
+        Learn • Build • Apply • Grow
+    </p>
+
+</footer>
+
+
+</body>
+
+</html>
+

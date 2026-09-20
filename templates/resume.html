@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Resume Builder | SkillBridge</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+
+<body>
+
+<header>
+
+    <div class="logo">
+        Skill<span>Bridge</span>
+    </div>
+
+    <nav>
+
+        <a href="/dashboard">
+            Dashboard
+        </a>
+
+        <a href="/profile">
+            Profile
+        </a>
+
+        <a href="/saved-jobs">
+            ⭐ Saved Jobs
+        </a>
+
+        <a href="/logout">
+            Logout
+        </a>
+
+    </nav>
+
+</header>
+
+
+<main class="container dashboard">
+
+    <div class="badge">
+        📄 RESUME BUILDER
+    </div>
+
+    <h1>
+        Build your resume
+    </h1>
+
+    <p style="color:#cbd5e1; font-size:18px; line-height:1.6;">
+        Create and save your professional resume information
+        in SkillBridge.
+    </p>
+
+
+    <div class="card" style="margin-top:30px;">
+
+        <form method="POST" action="/resume">
+
+
+            <!-- PERSONAL INFORMATION -->
+
+            <h2 style="margin-bottom:20px;">
+                👤 Personal Information
+            </h2>
+
+
+            <div class="form-group">
+
+                <label>
+                    Full Name
+                </label>
+
+                <input
+                    type="text"
+                    name="full_name"
+                    value="{{ resume['full_name'] if resume else '' }}"
+                    placeholder="Your full name"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Phone
+                </label>
+
+                <input
+                    type="text"
+                    name="phone"
+                    value="{{ resume['phone'] if resume else '' }}"
+                    placeholder="Your phone number"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Email
+                </label>
+
+                <input
+                    type="email"
+                    name="email"
+                    value="{{ resume['email'] if resume else '' }}"
+                    placeholder="Your email address"
+                    required
+                >
+
+            </div>
+
+
+            <!-- EDUCATION -->
+
+            <h2 style="margin-top:35px; margin-bottom:20px;">
+                🎓 Education
+            </h2>
+
+
+            <div class="form-group">
+
+                <label>
+                    Education
+                </label>
+
+                <textarea
+                    name="education"
+                    placeholder="Example: B.Tech Computer Science, XYZ College, 2026"
+                >{{ resume['education'] if resume else '' }}</textarea>
+
+            </div>
+
+
+            <!-- SKILLS -->
+
+            <h2 style="margin-top:35px; margin-bottom:20px;">
+                🛠️ Skills
+            </h2>
+
+
+            <div class="form-group">
+
+                <label>
+                    Your Skills
+                </label>
+
+                <textarea
+                    name="skills"
+                    placeholder="Example: Python, Flask, HTML, CSS, JavaScript, SQL"
+                >{{ resume['skills'] if resume else '' }}</textarea>
+
+            </div>
+
+
+            <!-- EXPERIENCE -->
+
+            <h2 style="margin-top:35px; margin-bottom:20px;">
+                💼 Experience
+            </h2>
+
+
+            <div class="form-group">
+
+                <label>
+                    Work Experience / Internships
+                </label>
+
+                <textarea
+                    name="experience"
+                    placeholder="Describe your work experience or internships. If you have none, write 'Fresher'."
+                >{{ resume['experience'] if resume else '' }}</textarea>
+
+            </div>
+
+
+            <!-- PROJECTS -->
+
+            <h2 style="margin-top:35px; margin-bottom:20px;">
+                🚀 Projects
+            </h2>
+
+
+            <div class="form-group">
+
+                <label>
+                    Projects
+                </label>
+
+                <textarea
+                    name="projects"
+                    placeholder="Example: SkillBridge - Built a Flask-based skill and job platform."
+                >{{ resume['projects'] if resume else '' }}</textarea>
+
+            </div>
+
+
+            <!-- ACHIEVEMENTS -->
+
+            <h2 style="margin-top:35px; margin-bottom:20px;">
+                🏆 Achievements
+            </h2>
+
+
+            <div class="form-group">
+
+                <label>
+                    Achievements / Certifications
+                </label>
+
+                <textarea
+                    name="achievements"
+                    placeholder="Example: Python certification, hackathon participation, academic achievements"
+                >{{ resume['achievements'] if resume else '' }}</textarea>
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="btn full-btn">
+
+                💾 Save Resume
+
+            </button>
+
+
+        </form>
+
+    </div>
+
+
+    <!-- RESUME PREVIEW -->
+
+    {% if resume %}
+
+    <section style="margin-top:50px;">
+
+        <div class="badge">
+            RESUME SAVED
+        </div>
+
+        <div class="card" style="margin-top:20px;">
+
+            <h2 style="font-size:32px;">
+                {{ resume['full_name'] }}
+            </h2>
+
+            <p style="color:#cbd5e1; margin-top:10px;">
+                {{ resume['email'] }}
+            </p>
+
+            <p style="color:#cbd5e1; margin-top:5px;">
+                {{ resume['phone'] }}
+            </p>
+
+
+            {% if resume['education'] %}
+
+            <h3 style="margin-top:30px;">
+                🎓 Education
+            </h3>
+
+            <p style="color:#cbd5e1; margin-top:10px; line-height:1.6;">
+                {{ resume['education'] }}
+            </p>
+
+            {% endif %}
+
+
+            {% if resume['skills'] %}
+
+            <h3 style="margin-top:25px;">
+                🛠️ Skills
+            </h3>
+
+            <p style="color:#cbd5e1; margin-top:10px; line-height:1.6;">
+                {{ resume['skills'] }}
+            </p>
+
+            {% endif %}
+
+
+            {% if resume['experience'] %}
+
+            <h3 style="margin-top:25px;">
+                💼 Experience
+            </h3>
+
+            <p style="color:#cbd5e1; margin-top:10px; line-height:1.6;">
+                {{ resume['experience'] }}
+            </p>
+
+            {% endif %}
+
+
+            {% if resume['projects'] %}
+
+            <h3 style="margin-top:25px;">
+                🚀 Projects
+            </h3>
+
+            <p style="color:#cbd5e1; margin-top:10px; line-height:1.6;">
+                {{ resume['projects'] }}
+            </p>
+
+            {% endif %}
+
+
+            {% if resume['achievements'] %}
+
+            <h3 style="margin-top:25px;">
+                🏆 Achievements
+            </h3>
+
+            <p style="color:#cbd5e1; margin-top:10px; line-height:1.6;">
+                {{ resume['achievements'] }}
+            </p>
+
+            {% endif %}
+
+        </div>
+
+    </section>
+
+    {% endif %}
+
+
+</main>
+
+
+<footer>
+
+    <p>
+        © 2026 SkillBridge
+    </p>
+
+    <p>
+        Learn • Build • Apply • Grow
+    </p>
+
+</footer>
+
+
+</body>
+
+</html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Learn Skills | SkillBridge</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+
+<body>
+
+<header>
+
+    <div class="logo">
+        Skill<span>Bridge</span>
+    </div>
+
+    <nav>
+
+        <a href="/dashboard">
+            Dashboard
+        </a>
+
+        <a href="/logout">
+            Logout
+        </a>
+
+    </nav>
+
+</header>
+
+
+<main class="container dashboard">
+
+    <div class="badge">
+        SKILL LEARNING
+    </div>
+
+    <h1>
+        What do you want to learn?
+    </h1>
+
+    <p style="color:#cbd5e1; font-size:18px;">
+        Search for a skill and discover learning resources.
+    </p>
+
+
+    <div class="card" style="margin-top:30px;">
+
+        <form method="GET" action="/skills">
+
+            <div class="form-group">
+
+                <label>
+                    Search Skill
+                </label>
+
+                <input
+                    type="text"
+                    name="skill"
+                    value="{{ skill }}"
+                    placeholder="Example: Python, Java, Web Development"
+                    required
+                >
+
+            </div>
+
+            <button
+                type="submit"
+                class="btn">
+
+                🔎 Search Skill
+
+            </button>
+
+        </form>
+
+    </div>
+
+
+    {% if skill %}
+
+    <section style="margin-top:40px;">
+
+        <div class="badge">
+            RESULTS FOR {{ skill.upper() }}
+        </div>
+
+        <h2 style="font-size:35px; margin:15px 0;">
+            Start learning {{ skill }}
+        </h2>
+
+
+        <div class="dashboard-grid">
+
+            {% for resource in resources %}
+
+            <div class="card dashboard-card">
+
+                <div class="icon">
+                    ▶️
+                </div>
+
+                <h2>
+                    {{ resource.title }}
+                </h2>
+
+                <p style="color:#cbd5e1; margin:15px 0; line-height:1.6;">
+                    {{ resource.description }}
+                </p>
+
+                <a
+                    href="{{ resource.url }}"
+                    target="_blank"
+                    class="btn">
+
+                    Watch on YouTube
+
+                </a>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </section>
+
+    {% endif %}
+
+
+</main>
+
+
+<footer>
+
+    <p>
+        © 2026 SkillBridge
+    </p>
+
+    <p>
+        Learn • Build • Apply • Grow
+    </p>
+
+</footer>
+
+
+</body>
+
+</html>

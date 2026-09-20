@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard | SkillBridge</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+
+<body>
+
+<header>
+
+    <div class="logo">
+        Skill<span>Bridge</span>
+    </div>
+
+    <nav>
+
+        <a href="/dashboard">
+            Dashboard
+        </a>
+
+        <a href="/profile">
+            Profile
+        </a>
+
+        <a href="/logout">
+            Logout
+        </a>
+
+    </nav>
+
+</header>
+
+
+<main class="container dashboard">
+
+    <div class="badge">
+        SKILLBRIDGE STUDENT HUB
+    </div>
+
+
+    <h1>
+        Welcome, {{ name }} 👋
+    </h1>
+
+
+    <p style="color:#cbd5e1; font-size:18px; line-height:1.6;">
+        Learn new skills, discover opportunities,
+        build your resume and prepare for your career.
+    </p>
+
+
+    <!-- SEARCH -->
+
+    <div class="card" style="margin-top:30px;">
+
+        <h2>
+            🔎 What are you looking for?
+        </h2>
+
+        <p style="color:#cbd5e1; margin:10px 0 20px;">
+            Search for skills, learning resources or jobs.
+        </p>
+
+        <form method="GET" action="/search">
+
+            <div class="form-group">
+
+                <input
+                    type="text"
+                    name="q"
+                    placeholder="Example: Python, Java, Data Science"
+                    required
+                >
+
+            </div>
+
+            <button type="submit" class="btn">
+                🔎 Search
+            </button>
+
+        </form>
+
+    </div>
+
+
+    <!-- MAIN FEATURES -->
+
+    <h2 style="font-size:32px; margin-top:50px;">
+        Explore SkillBridge
+    </h2>
+
+
+    <div class="dashboard-grid">
+
+
+        <!-- SKILLS -->
+
+        <a href="/skills"
+           class="card dashboard-card">
+
+            <div class="icon">
+                🎓
+            </div>
+
+            <h2>
+                Learn Skills
+            </h2>
+
+            <p style="color:#cbd5e1; margin-top:10px; line-height:1.6;">
+                Search for a skill and discover learning resources.
+            </p>
+
+        </a>
+
+
+        <!-- YOUTUBE -->
+
+        <a href="/youtube"
+           class="card dashboard-card">
+
+            <div class="icon">
+                📺
+            </div>
+
+            <h2>
+                YouTube Learning
+            </h2>
+
+            <p style="color:#cbd5e1; margin-top:10px; line-height:1.6;">
+                Find tutorials and educational videos.
+            </p>
+
+        </a>
+
+
+        <!-- JOBS -->
+
+        <a href="/jobs"
+           class="card dashboard-card">
+
+            <div class="icon">
+                💼
+            </div>
+
+            <h2>
+                Job Opportunities
+            </h2>
+
+            <p style="color:#cbd5e1; margin-top:10px; line-height:1.6;">
+                Explore internships and entry-level opportunities.
+            </p>
+
+        </a>
+
+
+        <!-- PROFILE -->
+
+        <a href="/profile"
+           class="card dashboard-card">
+
+            <div class="icon">
+                👤
+            </div>
+
+            <h2>
+                My Profile
+            </h2>
+
+            <p style="color:#cbd5e1; margin-top:10px; line-height:1.6;">
+                View and update your personal information.
+            </p>
+
+        </a>
+
+
+        <!-- RESUME -->
+
+        <a href="/resume"
+           class="card dashboard-card">
+
+            <div class="icon">
+                📄
+            </div>
+
+            <h2>
+                Resume Builder
+            </h2>
+
+            <p style="color:#cbd5e1; margin-top:10px; line-height:1.6;">
+                Create and save your resume.
+            </p>
+
+        </a>
+
+
+        <!-- SAVED JOBS -->
+
+        <a href="/saved-jobs"
+           class="card dashboard-card">
+
+            <div class="icon">
+                ⭐
+            </div>
+
+            <h2>
+                Saved Jobs
+            </h2>
+
+            <p style="color:#cbd5e1; margin-top:10px; line-height:1.6;">
+                Keep track of opportunities you want to explore.
+            </p>
+
+        </a>
+
+
+    </div>
+
+
+    <!-- QUICK ACTIONS -->
+
+    <section style="margin-top:50px;">
+
+        <div class="badge">
+            QUICK ACTIONS
+        </div>
+
+
+        <div class="card" style="margin-top:20px;">
+
+            <h2>
+                🚀 Keep building your career
+            </h2>
+
+            <p style="color:#cbd5e1; line-height:1.7; margin:15px 0;">
+                Learn a skill, practice with projects,
+                prepare your resume and explore opportunities.
+            </p>
+
+
+            <div style="margin-top:20px;">
+
+                <a href="/skills"
+                   class="btn">
+                    🎓 Learn
+                </a>
+
+                <a href="/jobs"
+                   class="btn secondary">
+                    💼 Find Jobs
+                </a>
+
+                <a href="/resume"
+                   class="btn secondary">
+                    📄 Resume
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+</main>
+
+
+<footer>
+
+    <p>
+        © 2026 SkillBridge
+    </p>
+
+    <p>
+        Learn • Build • Apply • Grow
+    </p>
+
+</footer>
+
+
+</body>
+
+</html>
+

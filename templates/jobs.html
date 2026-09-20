@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Job Opportunities | SkillBridge</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+
+<body>
+
+<header>
+
+    <div class="logo">
+        Skill<span>Bridge</span>
+    </div>
+
+    <nav>
+
+        <a href="/dashboard">
+            Dashboard
+        </a>
+
+        <a href="/saved-jobs">
+            ⭐ Saved Jobs
+        </a>
+
+        <a href="/logout">
+            Logout
+        </a>
+
+    </nav>
+
+</header>
+
+
+<main class="container dashboard">
+
+    <div class="badge">
+        💼 JOB OPPORTUNITIES
+    </div>
+
+    <h1>
+        Find your next opportunity
+    </h1>
+
+    <p style="color:#cbd5e1; font-size:18px; line-height:1.6;">
+        Search for internships and entry-level opportunities
+        based on your skills.
+    </p>
+
+
+    <!-- SEARCH -->
+
+    <div class="card" style="margin-top:30px;">
+
+        <form method="GET" action="/jobs">
+
+            <div class="form-group">
+
+                <label>
+                    Search Jobs
+                </label>
+
+                <input
+                    type="text"
+                    name="q"
+                    value="{{ query }}"
+                    placeholder="Example: Python, Java, Web Development"
+                >
+
+            </div>
+
+            <button
+                type="submit"
+                class="btn">
+
+                🔎 Search Jobs
+
+            </button>
+
+        </form>
+
+    </div>
+
+
+    <!-- DEMO NOTICE -->
+
+    <div class="card" style="margin-top:25px;">
+
+        <p style="color:#cbd5e1; line-height:1.6;">
+
+            ℹ️ These are sample opportunities for the
+            SkillBridge prototype. Always verify the
+            company and vacancy on the official application
+            website before applying.
+
+        </p>
+
+    </div>
+
+
+    <!-- JOB RESULTS -->
+
+    <section style="margin-top:40px;">
+
+        <div class="badge">
+            {% if query %}
+                RESULTS FOR "{{ query.upper() }}"
+            {% else %}
+                AVAILABLE OPPORTUNITIES
+            {% endif %}
+        </div>
+
+
+        {% if jobs %}
+
+        <div class="dashboard-grid">
+
+            {% for job in jobs %}
+
+            <div class="card dashboard-card">
+
+                <div class="icon">
+                    💼
+                </div>
+
+
+                <h2>
+                    {{ job.role }}
+                </h2>
+
+
+                <p style="margin-top:10px;">
+                    <strong>
+                        {{ job.company }}
+                    </strong>
+                </p>
+
+
+                <p style="color:#cbd5e1; margin-top:12px;">
+                    📍 {{ job.location }}
+                </p>
+
+
+                <p style="color:#cbd5e1; margin-top:8px;">
+                    🎓 {{ job.type }}
+                </p>
+
+
+                <p style="color:#cbd5e1; margin-top:8px;">
+                    🛠️ {{ job.skills }}
+                </p>
+
+
+                <p style="color:#cbd5e1; line-height:1.6; margin-top:15px;">
+                    {{ job.description }}
+                </p>
+
+
+                <div style="margin-top:20px;">
+
+                    <a
+                        href="{{ job.url }}"
+                        target="_blank"
+                        class="btn">
+
+                        Apply / View
+
+                    </a>
+
+
+                    <a
+                        href="/save-job/{{ job.id }}"
+                        class="btn secondary">
+
+                        ⭐ Save
+
+                    </a>
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+
+        {% else %}
+
+        <div class="card" style="margin-top:25px;">
+
+            <h2>
+                No matching jobs found
+            </h2>
+
+            <p style="color:#cbd5e1; margin-top:12px;">
+                Try searching for another skill such as
+                Python, Java, SQL or Web Development.
+            </p>
+
+        </div>
+
+        {% endif %}
+
+    </section>
+
+
+</main>
+
+
+<footer>
+
+    <p>
+        © 2026 SkillBridge
+    </p>
+
+    <p>
+        Learn • Build • Apply • Grow
+    </p>
+
+</footer>
+
+
+</body>
+
+</html>

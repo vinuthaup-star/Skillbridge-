@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Saved Jobs | SkillBridge</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+
+<body>
+
+<header>
+
+    <div class="logo">
+        Skill<span>Bridge</span>
+    </div>
+
+    <nav>
+
+        <a href="/dashboard">
+            Dashboard
+        </a>
+
+        <a href="/jobs">
+            💼 Jobs
+        </a>
+
+        <a href="/profile">
+            👤 Profile
+        </a>
+
+        <a href="/logout">
+            Logout
+        </a>
+
+    </nav>
+
+</header>
+
+
+<main class="container dashboard">
+
+    <div class="badge">
+        ⭐ SAVED JOBS
+    </div>
+
+    <h1>
+        Your Saved Jobs
+    </h1>
+
+    <p style="color:#cbd5e1; font-size:18px; line-height:1.6;">
+        Keep track of opportunities you want to explore later.
+    </p>
+
+
+    {% if jobs %}
+
+    <div class="dashboard-grid">
+
+        {% for job in jobs %}
+
+        <div class="card dashboard-card">
+
+            <div class="icon">
+                ⭐
+            </div>
+
+
+            <h2>
+                {{ job.role }}
+            </h2>
+
+
+            <p style="margin-top:10px;">
+                <strong>
+                    {{ job.company }}
+                </strong>
+            </p>
+
+
+            <p style="color:#cbd5e1; margin-top:12px;">
+                📍 {{ job.location }}
+            </p>
+
+
+            <p style="color:#cbd5e1; margin-top:8px;">
+                🎓 {{ job.type }}
+            </p>
+
+
+            <p style="color:#cbd5e1; margin-top:8px;">
+                🛠️ {{ job.skills }}
+            </p>
+
+
+            <p style="color:#cbd5e1; line-height:1.6; margin-top:15px;">
+                {{ job.description }}
+            </p>
+
+
+            <div style="margin-top:20px;">
+
+                <a
+                    href="{{ job.url }}"
+                    target="_blank"
+                    class="btn">
+
+                    Apply / View
+
+                </a>
+
+
+                <a
+                    href="/remove-saved-job/{{ job.id }}"
+                    class="btn secondary">
+
+                    Remove
+
+                </a>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+
+    {% else %}
+
+    <div class="card" style="margin-top:35px; text-align:center;">
+
+        <div class="icon">
+            ⭐
+        </div>
+
+        <h2>
+            No saved jobs yet
+        </h2>
+
+        <p style="color:#cbd5e1; margin:15px 0; line-height:1.6;">
+            When you find an opportunity you like,
+            press the ⭐ Save button and it will appear here.
+        </p>
+
+        <a
+            href="/jobs"
+            class="btn">
+
+            💼 Explore Jobs
+
+        </a>
+
+    </div>
+
+    {% endif %}
+
+
+</main>
+
+
+<footer>
+
+    <p>
+        © 2026 SkillBridge
+    </p>
+
+    <p>
+        Learn • Build • Apply • Grow
+    </p>
+
+</footer>
+
+
+</body>
+
+</html>
+
