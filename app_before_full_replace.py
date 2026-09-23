@@ -3,12 +3,13 @@ import sqlite3
 from urllib.parse import quote
 
 app = Flask(__name__)
+
 app.secret_key = "skillbridge-secret-key"
 
 
-# =================================================
+# -------------------------------------------------
 # DATABASE
-# =================================================
+# -------------------------------------------------
 
 def get_db():
     conn = sqlite3.connect("database.db")
@@ -17,6 +18,7 @@ def get_db():
 
 
 def create_database():
+
     conn = get_db()
 
     # Users table
@@ -61,19 +63,6 @@ def create_database():
             FOREIGN KEY(user_id) REFERENCES users(id)
         )
     """)
-
-    # Placement applications table
-    conn.execute("""
-        CREATE TABLE IF NOT EXISTS applications (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            user_id INTEGER,
-            job_id INTEGER,
-            status TEXT DEFAULT 'Applied',
-            applied_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-            UNIQUE(user_id, job_id),
-            FOREIGN KEY(user_id) REFERENCES users(id)
-        )
-    """)
     # Assessment results table
     conn.execute("""
         CREATE TABLE IF NOT EXISTS assessment_results (
@@ -86,17 +75,19 @@ def create_database():
             level TEXT,
             FOREIGN KEY(user_id) REFERENCES users(id)
         )
-   """)
+    """)
+
 
     conn.commit()
     conn.close()
 
 
-# =================================================
+# -------------------------------------------------
 # DEMO JOB DATA
-# =================================================
+# -------------------------------------------------
 
 JOBS = [
+
     {
         "id": 1,
         "company": "SkillBridge Demo Company",
@@ -107,6 +98,7 @@ JOBS = [
         "description": "Sample internship opportunity for students learning Python.",
         "url": "https://www.linkedin.com/jobs/"
     },
+
     {
         "id": 2,
         "company": "Tech Demo Solutions",
@@ -117,6 +109,7 @@ JOBS = [
         "description": "Sample web development opportunity for beginners.",
         "url": "https://www.linkedin.com/jobs/"
     },
+
     {
         "id": 3,
         "company": "Digital Skills Demo",
@@ -127,6 +120,7 @@ JOBS = [
         "description": "Sample entry-level Java opportunity.",
         "url": "https://www.linkedin.com/jobs/"
     },
+
     {
         "id": 4,
         "company": "Data Demo Labs",
@@ -137,6 +131,7 @@ JOBS = [
         "description": "Sample data analytics opportunity.",
         "url": "https://www.linkedin.com/jobs/"
     },
+
     {
         "id": 5,
         "company": "Creative Web Demo",
@@ -147,21 +142,23 @@ JOBS = [
         "description": "Sample frontend development opportunity.",
         "url": "https://www.linkedin.com/jobs/"
     }
+
 ]
 
 
-# =================================================
+# -------------------------------------------------
 # HOME
-# =================================================
+# -------------------------------------------------
 
 @app.route("/")
 def home():
+
     return render_template("index.html")
 
 
-# =================================================
+# -------------------------------------------------
 # REGISTER
-# =================================================
+# -------------------------------------------------
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
@@ -175,11 +172,13 @@ def register():
         skills = request.form.get("skills", "").strip()
 
         if not name or not email or not password:
+
             return "Please fill in all required fields."
 
         conn = get_db()
 
         try:
+
             conn.execute(
                 """
                 INSERT INTO users
@@ -201,15 +200,18 @@ def register():
             return redirect("/login")
 
         except sqlite3.IntegrityError:
+
             conn.close()
+
             return "This email is already registered."
+
 
     return render_template("register.html")
 
 
-# =================================================
+# -------------------------------------------------
 # LOGIN
-# =================================================
+# -------------------------------------------------
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -233,6 +235,7 @@ def login():
         conn.close()
 
         if user:
+
             session["user_id"] = user["id"]
             session["user_name"] = user["name"]
 
@@ -240,17 +243,19 @@ def login():
 
         return "Invalid email or password."
 
+
     return render_template("login.html")
 
 
-# =================================================
+# -------------------------------------------------
 # DASHBOARD
-# =================================================
+# -------------------------------------------------
 
 @app.route("/dashboard")
 def dashboard():
 
     if "user_id" not in session:
+
         return redirect("/login")
 
     return render_template(
@@ -259,14 +264,15 @@ def dashboard():
     )
 
 
-# =================================================
+# -------------------------------------------------
 # SEARCH
-# =================================================
+# -------------------------------------------------
 
 @app.route("/search")
 def search():
 
     if "user_id" not in session:
+
         return redirect("/login")
 
     query = request.args.get("q", "").strip()
@@ -277,14 +283,15 @@ def search():
     )
 
 
-# =================================================
+# -------------------------------------------------
 # SKILLS
-# =================================================
+# -------------------------------------------------
 
 @app.route("/skills")
 def skills():
 
     if "user_id" not in session:
+
         return redirect("/login")
 
     skill = request.args.get("skill", "").strip()
@@ -296,6 +303,7 @@ def skills():
         encoded_skill = quote(skill)
 
         resources = [
+
             {
                 "title": f"Learn {skill} - Beginner",
                 "description": f"Start learning the basics of {skill}.",
@@ -303,22 +311,23 @@ def skills():
                     f"https://www.youtube.com/results?search_query="
                     f"{encoded_skill}+for+beginners"
             },
+
             {
                 "title": f"{skill} Tutorial",
-                "description":
-                    f"Find tutorials and practical lessons about {skill}.",
+                "description": f"Find tutorials and practical lessons about {skill}.",
                 "url":
                     f"https://www.youtube.com/results?search_query="
                     f"{encoded_skill}+tutorial"
             },
+
             {
                 "title": f"{skill} Projects",
-                "description":
-                    f"Practice {skill} by building projects.",
+                "description": f"Practice {skill} by building projects.",
                 "url":
                     f"https://www.youtube.com/results?search_query="
                     f"{encoded_skill}+projects"
             }
+
         ]
 
     return render_template(
@@ -328,14 +337,15 @@ def skills():
     )
 
 
-# =================================================
+# -------------------------------------------------
 # YOUTUBE
-# =================================================
+# -------------------------------------------------
 
 @app.route("/youtube")
 def youtube():
 
     if "user_id" not in session:
+
         return redirect("/login")
 
     query = request.args.get("q", "").strip()
@@ -343,6 +353,7 @@ def youtube():
     video_url = ""
 
     if query:
+
         video_url = (
             "https://www.youtube.com/results?search_query="
             + quote(query)
@@ -355,14 +366,15 @@ def youtube():
     )
 
 
-# =================================================
+# -------------------------------------------------
 # JOBS
-# =================================================
+# -------------------------------------------------
 
 @app.route("/jobs")
 def jobs():
 
     if "user_id" not in session:
+
         return redirect("/login")
 
     query = request.args.get("q", "").strip().lower()
@@ -386,10 +398,13 @@ def jobs():
             ).lower()
 
             if query in searchable_text:
+
                 filtered_jobs.append(job)
 
     else:
+
         filtered_jobs = JOBS
+
 
     return render_template(
         "jobs.html",
@@ -398,14 +413,15 @@ def jobs():
     )
 
 
-# =================================================
+# -------------------------------------------------
 # SAVE JOB
-# =================================================
+# -------------------------------------------------
 
 @app.route("/save-job/<int:job_id>")
 def save_job(job_id):
 
     if "user_id" not in session:
+
         return redirect("/login")
 
     user_id = session["user_id"]
@@ -415,6 +431,7 @@ def save_job(job_id):
     for job in JOBS:
 
         if job["id"] == job_id:
+
             valid_job = job
             break
 
@@ -437,14 +454,15 @@ def save_job(job_id):
     return redirect(request.referrer or "/jobs")
 
 
-# =================================================
+# -------------------------------------------------
 # REMOVE SAVED JOB
-# =================================================
+# -------------------------------------------------
 
 @app.route("/remove-saved-job/<int:job_id>")
 def remove_saved_job(job_id):
 
     if "user_id" not in session:
+
         return redirect("/login")
 
     user_id = session["user_id"]
@@ -465,14 +483,15 @@ def remove_saved_job(job_id):
     return redirect(request.referrer or "/saved-jobs")
 
 
-# =================================================
+# -------------------------------------------------
 # SAVED JOBS
-# =================================================
+# -------------------------------------------------
 
 @app.route("/saved-jobs")
 def saved_jobs():
 
     if "user_id" not in session:
+
         return redirect("/login")
 
     user_id = session["user_id"]
@@ -490,16 +509,14 @@ def saved_jobs():
 
     conn.close()
 
-    saved_ids = [
-        row["job_id"]
-        for row in saved_rows
-    ]
+    saved_ids = [row["job_id"] for row in saved_rows]
 
     saved_jobs_list = []
 
     for job in JOBS:
 
         if job["id"] in saved_ids:
+
             saved_jobs_list.append(job)
 
     return render_template(
@@ -508,14 +525,15 @@ def saved_jobs():
     )
 
 
-# =================================================
+# -------------------------------------------------
 # PROFILE
-# =================================================
+# -------------------------------------------------
 
 @app.route("/profile", methods=["GET", "POST"])
 def profile():
 
     if "user_id" not in session:
+
         return redirect("/login")
 
     user_id = session["user_id"]
@@ -572,105 +590,17 @@ def profile():
         "profile.html",
         user=user
     )
-# =================================================
-# APPLY FOR JOB
-# =================================================
 
-@app.route("/apply-job/<int:job_id>")
-def apply_job(job_id):
 
-    if "user_id" not in session:
-        return redirect("/login")
-
-    user_id = session["user_id"]
-
-    valid_job = None
-
-    for job in JOBS:
-        if job["id"] == job_id:
-            valid_job = job
-            break
-
-    if valid_job:
-
-        conn = get_db()
-
-        conn.execute(
-            """
-            INSERT OR IGNORE INTO applications
-            (user_id, job_id, status)
-            VALUES (?, ?, ?)
-            """,
-            (
-                user_id,
-                job_id,
-                "Applied"
-            )
-        )
-
-        conn.commit()
-        conn.close()
-
-    return redirect(request.referrer or "/jobs")
-
-# =================================================
-# MY APPLICATIONS
-# =================================================
-
-@app.route("/applications")
-def applications():
-
-    if "user_id" not in session:
-        return redirect("/login")
-
-    user_id = session["user_id"]
-
-    conn = get_db()
-
-    rows = conn.execute(
-        """
-        SELECT job_id, status, applied_at
-        FROM applications
-        WHERE user_id = ?
-        """,
-        (user_id,)
-    ).fetchall()
-
-    conn.close()
-
-    application_list = []
-
-    for row in rows:
-
-        for job in JOBS:
-
-            if job["id"] == row["job_id"]:
-
-                application_list.append({
-                    "company": job["company"],
-                    "role": job["role"],
-                    "location": job["location"],
-                    "skills": job["skills"],
-                    "type": job["type"],
-                    "status": row["status"],
-                    "applied_at": row["applied_at"]
-                })
-
-                break
-
-    return render_template(
-        "applications.html",
-        applications=application_list
-    )
-
-# =================================================
+# -------------------------------------------------
 # RESUME
-# =================================================
+# -------------------------------------------------
 
 @app.route("/resume", methods=["GET", "POST"])
 def resume():
 
     if "user_id" not in session:
+
         return redirect("/login")
 
     user_id = session["user_id"]
@@ -747,9 +677,34 @@ def resume():
     )
 
 
-# =================================================
+# -------------------------------------------------
+# LOGOUT
+# -------------------------------------------------
+
+@app.route("/logout")
+def logout():
+
+    session.clear()
+
+    return redirect("/login")
+
+
+# -------------------------------------------------
+# START APPLICATION
+# -------------------------------------------------
+
+if __name__ == "__main__":
+
+    create_database()
+
+   app.run(
+        host="0.0.0.0",
+        port=5000,
+        debug=True
+    )
+# -------------------------------------------------
 # SKILL ASSESSMENT
-# =================================================
+# -------------------------------------------------
 
 @app.route("/assessment", methods=["GET", "POST"])
 def assessment():
@@ -780,48 +735,35 @@ def assessment():
 
         points = score * 10
 
-        percentage = int(
-            (score / total) * 100
-        )
+        percentage = int((score / total) * 100)
 
         if percentage < 40:
             level = "Beginner"
-
         elif percentage < 80:
             level = "Intermediate"
-
         else:
             level = "Advanced"
 
         conn = get_db()
 
-        conn.execute(
-            """
+        conn.execute("""
             INSERT INTO assessment_results
-            (
-                user_id,
-                score,
-                total,
-                points,
-                percentage,
-                level
-            )
+            (user_id, score, total, points, percentage, level)
             VALUES (?, ?, ?, ?, ?, ?)
-            """,
-            (
-                session["user_id"],
-                score,
-                total,
-                points,
-                percentage,
-                level
-            )
-        )
+        """, (
+            session["user_id"],
+            score,
+            total,
+            points,
+            percentage,
+            level
+        ))
 
         conn.commit()
         conn.close()
 
-        return render_template(
+        return
+         render_template(
             "assessment_result.html",
             score=score,
             total=total,
@@ -832,30 +774,3 @@ def assessment():
         )
 
     return render_template("assessment.html")
-
-
-# =================================================
-# LOGOUT
-# =================================================
-
-@app.route("/logout")
-def logout():
-
-    session.clear()
-
-    return redirect("/login")
-
-
-# =================================================
-# START APPLICATION
-# =================================================
-
-if __name__ == "__main__":
-
-    create_database()
-
-    app.run(
-        host="0.0.0.0",
-        port=5000,
-        debug=True
-    )

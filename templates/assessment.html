@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Skill Assessment | SkillBridge</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<header>
+
+    <div class="logo">
+        Skill<span>Bridge</span>
+    </div>
+
+    <nav>
+        <a href="/dashboard">Dashboard</a>
+        <a href="/skills">Skills</a>
+        <a href="/jobs">Jobs</a>
+        <a href="/profile">Profile</a>
+        <a href="/logout">Logout</a>
+    </nav>
+
+</header>
+
+
+<main class="container dashboard">
+
+    <div class="badge">
+        SKILL ASSESSMENT
+    </div>
+
+    <h1>
+        Test Your Skills
+    </h1>
+
+    <p style="color:#cbd5e1; font-size:18px; line-height:1.6;">
+        Answer a few questions and discover your current
+        skill level.
+    </p>
+
+
+    <form method="POST"
+          action="/assessment">
+
+
+        <!-- QUESTION 1 -->
+
+        <div class="card" style="margin-top:30px;">
+
+            <h2>
+                1. Which language is commonly used for
+                data analysis?
+            </h2>
+
+            <div style="margin-top:20px;">
+
+                <label>
+                    <input type="radio"
+                           name="q1"
+                           value="Python"
+                           required>
+                    Python
+                </label>
+
+                <br><br>
+
+                <label>
+                    <input type="radio"
+                           name="q1"
+                           value="HTML">
+                    HTML
+                </label>
+
+                <br><br>
+
+                <label>
+                    <input type="radio"
+                           name="q1"
+                           value="CSS">
+                    CSS
+                </label>
+
+                <br><br>
+
+                <label>
+                    <input type="radio"
+                           name="q1"
+                           value="XML">
+                    XML
+                </label>
+
+            </div>
+
+        </div>
+
+
+        <!-- QUESTION 2 -->
+
+        <div class="card" style="margin-top:20px;">
+
+            <h2>
+                2. Which SQL command is used to retrieve
+                data from a database?
+            </h2>
+
+            <div style="margin-top:20px;">
+
+                <label>
+                    <input type="radio"
+                           name="q2"
+                           value="SELECT"
+                           required>
+                    SELECT
+                </label>
+
+                <br><br>
+
+                <label>
+                    <input type="radio"
+                           name="q2"
+                           value="DELETE">
+                    DELETE
+                </label>
+
+                <br><br>
+
+                <label>
+                    <input type="radio"
+                           name="q2"
+                           value="DROP">
+                    DROP
+                </label>
+
+                <br><br>
+
+                <label>
+                    <input type="radio"
+                           name="q2"
+                           value="REMOVE">
+                    REMOVE
+                </label>
+
+            </div>
+
+        </div>
+
+
+        <!-- QUESTION 3 -->
+
+        <div class="card" style="margin-top:20px;">
+
+            <h2>
+                3. Which technology is mainly used to
+                structure a web page?
+            </h2>
+
+            <div style="margin-top:20px;">
+
+                <label>
+                    <input type="radio"
+                           name="q3"
+                           value="HTML"
+                           required>
+                    HTML
+                </label>
+
+                <br><br>
+
+                <label>
+                    <input type="radio"
+                           name="q3"
+                           value="Python">
+                    Python
+                </label>
+
+                <br><br>
+
+                <label>
+                    <input type="radio"
+                           name="q3"
+                           value="SQL">
+                    SQL
+                </label>
+
+                <br><br>
+
+                <label>
+                    <input type="radio"
+                           name="q3"
+                           value="Git">
+                    Git
+                </label>
+
+            </div>
+
+        </div>
+
+
+        <!-- QUESTION 4 -->
+
+        <div class="card" style="margin-top:20px;">
+
+            <h2>
+                4. Which skill is important during a
+                job interview?
+            </h2>
+
+            <div style="margin-top:20px;">
+
+                <label>
+                    <input type="radio"
+                           name="q4"
+                           value="Communication"
+                           required>
+                    Communication
+                </label>
+
+                <br><br>
+
+                <label>
+                    <input type="radio"
+                           name="q4"
+                           value="Typing">
+                    Typing
+                </label>
+
+                <br><br>
+
+                <label>
+                    <input type="radio"
+                           name="q4"
+                           value="Gaming">
+                    Gaming
+                </label>
+
+                <br><br>
+
+                <label>
+                    <input type="radio"
+                           name="q4"
+                           value="None">
+                    None of these
+                </label>
+
+            </div>
+
+        </div>
+
+
+        <!-- QUESTION 5 -->
+
+        <div class="card" style="margin-top:20px;">
+
+            <h2>
+                5. What is Git mainly used for?
+            </h2>
+
+            <div style="margin-top:20px;">
+
+                <label>
+                    <input type="radio"
+                           name="q5"
+                           value="Version Control"
+                           required>
+                    Version Control
+                </label>
+
+                <br><br>
+
+                <label>
+                    <input type="radio"
+                           name="q5"
+                           value="Photo Editing">
+                    Photo Editing
+                </label>
+
+                <br><br>
+
+                <label>
+                    <input type="radio"
+                           name="q5"
+                           value="Video Editing">
+                    Video Editing
+                </label>
+
+                <br><br>
+
+                <label>
+                    <input type="radio"
+                           name="q5"
+                           value="Gaming">
+                    Gaming
+                </label>
+
+            </div>
+
+        </div>
+
+
+        <button type="submit"
+                class="btn"
+                style="margin-top:30px;">
+            Submit Assessment
+        </button>
+
+    </form>
+
+</main>
+
+
+<footer>
+
+    <p>
+        © 2026 SkillBridge
+    </p>
+
+    <p>
+        Learn • Build • Apply • Grow
+    </p>
+
+</footer>
+
+</body>
+</html>
+

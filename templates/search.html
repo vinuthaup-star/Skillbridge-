@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Search | SkillBridge</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<header>
+
+    <div class="logo">
+        Skill<span>Bridge</span>
+    </div>
+
+    <nav>
+        <a href="/dashboard">Dashboard</a>
+        <a href="/skills">Learn Skills</a>
+        <a href="/jobs">Jobs</a>
+        <a href="/profile">Profile</a>
+        <a href="/logout">Logout</a>
+    </nav>
+
+</header>
+
+<main class="container dashboard">
+
+    <div class="badge">
+        SKILLBRIDGE SEARCH
+    </div>
+
+    <h1>
+        Search SkillBridge
+    </h1>
+
+    <p style="color:#cbd5e1; font-size:18px; line-height:1.6;">
+        Search for skills, learning resources or job opportunities.
+    </p>
+
+    <!-- SEARCH BOX -->
+
+    <div class="card" style="margin-top:30px;">
+
+        <form method="GET" action="/search">
+
+            <div class="form-group">
+
+                <label>
+                    Search
+                </label>
+
+                <input
+                    type="text"
+                    name="q"
+                    value="{{ query }}"
+                    placeholder="Example: Python, Java, Data Science"
+                    required
+                >
+
+            </div>
+
+            <button type="submit" class="btn">
+                🔎 Search
+            </button>
+
+        </form>
+
+    </div>
+
+
+    {% if query %}
+
+    <h2 style="font-size:32px; margin-top:50px;">
+        Results for "{{ query }}"
+    </h2>
+
+    <div class="dashboard-grid">
+
+        <!-- LEARNING -->
+
+        <a href="/skills?skill={{ query|urlencode }}"
+           class="card dashboard-card">
+
+            <div class="icon">
+                🎓
+            </div>
+
+            <h2>
+                Learn {{ query }}
+            </h2>
+
+            <p style="color:#cbd5e1; margin-top:10px; line-height:1.6;">
+                Find learning resources and tutorials for this skill.
+            </p>
+
+        </a>
+
+
+        <!-- YOUTUBE -->
+
+        <a href="/youtube?q={{ query|urlencode }}"
+           class="card dashboard-card">
+
+            <div class="icon">
+                📺
+            </div>
+
+            <h2>
+                YouTube Learning
+            </h2>
+
+            <p style="color:#cbd5e1; margin-top:10px; line-height:1.6;">
+                Find educational videos about {{ query }}.
+            </p>
+
+        </a>
+
+
+        <!-- JOBS -->
+
+        <a href="/jobs?q={{ query|urlencode }}"
+           class="card dashboard-card">
+
+            <div class="icon">
+                💼
+            </div>
+
+            <h2>
+                Jobs for {{ query }}
+            </h2>
+
+            <p style="color:#cbd5e1; margin-top:10px; line-height:1.6;">
+                Explore opportunities related to {{ query }}.
+            </p>
+
+        </a>
+
+    </div>
+
+    {% else %}
+
+    <div class="card" style="margin-top:40px;">
+
+        <h2>
+            🔎 Start searching
+        </h2>
+
+        <p style="color:#cbd5e1; margin-top:10px; line-height:1.6;">
+            Try searching for skills such as Python, Java,
+            Web Development, Data Science or SQL.
+        </p>
+
+    </div>
+
+    {% endif %}
+
+</main>
+
+<footer>
+
+    <p>
+        © 2026 SkillBridge
+    </p>
+
+    <p>
+        Learn • Build • Apply • Grow
+    </p>
+
+</footer>
+
+</body>
+</html>
+

@@ -62,18 +62,6 @@ def create_database():
         )
     """)
 
-    # Placement applications table
-    conn.execute("""
-        CREATE TABLE IF NOT EXISTS applications (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            user_id INTEGER,
-            job_id INTEGER,
-            status TEXT DEFAULT 'Applied',
-            applied_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-            UNIQUE(user_id, job_id),
-            FOREIGN KEY(user_id) REFERENCES users(id)
-        )
-    """)
     # Assessment results table
     conn.execute("""
         CREATE TABLE IF NOT EXISTS assessment_results (
@@ -86,7 +74,7 @@ def create_database():
             level TEXT,
             FOREIGN KEY(user_id) REFERENCES users(id)
         )
-   """)
+    """)
 
     conn.commit()
     conn.close()
@@ -572,96 +560,7 @@ def profile():
         "profile.html",
         user=user
     )
-# =================================================
-# APPLY FOR JOB
-# =================================================
 
-@app.route("/apply-job/<int:job_id>")
-def apply_job(job_id):
-
-    if "user_id" not in session:
-        return redirect("/login")
-
-    user_id = session["user_id"]
-
-    valid_job = None
-
-    for job in JOBS:
-        if job["id"] == job_id:
-            valid_job = job
-            break
-
-    if valid_job:
-
-        conn = get_db()
-
-        conn.execute(
-            """
-            INSERT OR IGNORE INTO applications
-            (user_id, job_id, status)
-            VALUES (?, ?, ?)
-            """,
-            (
-                user_id,
-                job_id,
-                "Applied"
-            )
-        )
-
-        conn.commit()
-        conn.close()
-
-    return redirect(request.referrer or "/jobs")
-
-# =================================================
-# MY APPLICATIONS
-# =================================================
-
-@app.route("/applications")
-def applications():
-
-    if "user_id" not in session:
-        return redirect("/login")
-
-    user_id = session["user_id"]
-
-    conn = get_db()
-
-    rows = conn.execute(
-        """
-        SELECT job_id, status, applied_at
-        FROM applications
-        WHERE user_id = ?
-        """,
-        (user_id,)
-    ).fetchall()
-
-    conn.close()
-
-    application_list = []
-
-    for row in rows:
-
-        for job in JOBS:
-
-            if job["id"] == row["job_id"]:
-
-                application_list.append({
-                    "company": job["company"],
-                    "role": job["role"],
-                    "location": job["location"],
-                    "skills": job["skills"],
-                    "type": job["type"],
-                    "status": row["status"],
-                    "applied_at": row["applied_at"]
-                })
-
-                break
-
-    return render_template(
-        "applications.html",
-        applications=application_list
-    )
 
 # =================================================
 # RESUME

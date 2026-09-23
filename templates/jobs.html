@@ -8,7 +8,7 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
 
-    <title>Job Opportunities | SkillBridge</title>
+    <title>Placement Opportunities | SkillBridge</title>
 
     <link rel="stylesheet"
           href="{{ url_for('static', filename='style.css') }}">
@@ -30,6 +30,10 @@
             Dashboard
         </a>
 
+        <a href="/applications">
+            📋 My Applications
+        </a>
+
         <a href="/saved-jobs">
             ⭐ Saved Jobs
         </a>
@@ -46,17 +50,53 @@
 <main class="container dashboard">
 
     <div class="badge">
-        💼 JOB OPPORTUNITIES
+        💼 PLACEMENT & INTERNSHIP OPPORTUNITIES
     </div>
 
     <h1>
         Find your next opportunity
     </h1>
 
-    <p style="color:#cbd5e1; font-size:18px; line-height:1.6;">
-        Search for internships and entry-level opportunities
-        based on your skills.
+    <p style="font-size:18px; line-height:1.6;">
+        Explore internships and entry-level opportunities
+        based on your skills and career interests.
     </p>
+
+
+    <!-- PLACEMENT NAVIGATION -->
+
+    <div class="card" style="margin-top:25px;">
+
+        <h2>
+            Placement Centre
+        </h2>
+
+        <p style="margin-top:10px; line-height:1.6;">
+            Search opportunities, save jobs and track
+            your applications from one place.
+        </p>
+
+        <div style="margin-top:20px;">
+
+            <a
+                href="/applications"
+                class="btn">
+
+                📋 My Applications
+
+            </a>
+
+            <a
+                href="/saved-jobs"
+                class="btn secondary">
+
+                ⭐ Saved Jobs
+
+            </a>
+
+        </div>
+
+    </div>
 
 
     <!-- SEARCH -->
@@ -68,14 +108,14 @@
             <div class="form-group">
 
                 <label>
-                    Search Jobs
+                    Search Opportunities
                 </label>
 
                 <input
                     type="text"
                     name="q"
                     value="{{ query }}"
-                    placeholder="Example: Python, Java, Web Development"
+                    placeholder="Example: Python, Java, SQL, Web Development"
                 >
 
             </div>
@@ -84,7 +124,7 @@
                 type="submit"
                 class="btn">
 
-                🔎 Search Jobs
+                🔎 Search Opportunities
 
             </button>
 
@@ -97,7 +137,7 @@
 
     <div class="card" style="margin-top:25px;">
 
-        <p style="color:#cbd5e1; line-height:1.6;">
+        <p style="line-height:1.6;">
 
             ℹ️ These are sample opportunities for the
             SkillBridge prototype. Always verify the
@@ -114,11 +154,17 @@
     <section style="margin-top:40px;">
 
         <div class="badge">
+
             {% if query %}
+
                 RESULTS FOR "{{ query.upper() }}"
+
             {% else %}
+
                 AVAILABLE OPPORTUNITIES
+
             {% endif %}
+
         </div>
 
 
@@ -147,34 +193,35 @@
                 </p>
 
 
-                <p style="color:#cbd5e1; margin-top:12px;">
+                <p style="margin-top:12px;">
                     📍 {{ job.location }}
                 </p>
 
 
-                <p style="color:#cbd5e1; margin-top:8px;">
+                <p style="margin-top:8px;">
                     🎓 {{ job.type }}
                 </p>
 
 
-                <p style="color:#cbd5e1; margin-top:8px;">
+                <p style="margin-top:8px;">
                     🛠️ {{ job.skills }}
                 </p>
 
 
-                <p style="color:#cbd5e1; line-height:1.6; margin-top:15px;">
+                <p style="line-height:1.6; margin-top:15px;">
                     {{ job.description }}
                 </p>
 
 
-                <div style="margin-top:20px;">
+                <!-- PLACEMENT ACTIONS -->
+
+                <div style="margin-top:20px; display:flex; flex-wrap:wrap; gap:10px;">
 
                     <a
-                        href="{{ job.url }}"
-                        target="_blank"
+                        href="/apply-job/{{ job.id }}"
                         class="btn">
 
-                        Apply / View
+                        📝 Apply Now
 
                     </a>
 
@@ -183,7 +230,17 @@
                         href="/save-job/{{ job.id }}"
                         class="btn secondary">
 
-                        ⭐ Save
+                        ⭐ Save Job
+
+                    </a>
+
+
+                    <a
+                        href="{{ job.url }}"
+                        target="_blank"
+                        class="btn secondary">
+
+                        🔗 Company Site
 
                     </a>
 
@@ -201,10 +258,10 @@
         <div class="card" style="margin-top:25px;">
 
             <h2>
-                No matching jobs found
+                No matching opportunities found
             </h2>
 
-            <p style="color:#cbd5e1; margin-top:12px;">
+            <p style="margin-top:12px;">
                 Try searching for another skill such as
                 Python, Java, SQL or Web Development.
             </p>

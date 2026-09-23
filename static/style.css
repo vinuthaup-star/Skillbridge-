@@ -1,3 +1,8 @@
+/* =================================================
+   SKILLBRIDGE - LIGHT THEME
+   Warm cream + deep green + orange
+   ================================================= */
+
 * {
     margin: 0;
     padding: 0;
@@ -11,14 +16,15 @@ html {
 body {
     font-family: Arial, sans-serif;
     min-height: 100vh;
-    color: white;
-    background:
-        radial-gradient(circle at top left, #243b80, transparent 35%),
-        radial-gradient(circle at bottom right, #6d28d9, transparent 35%),
-        linear-gradient(135deg, #07111f, #111827);
+    color: #202723;
+    background: #FAFAF7;
+    line-height: 1.5;
 }
 
-/* HEADER */
+
+/* =================================================
+   HEADER
+   ================================================= */
 
 header {
     width: 100%;
@@ -27,44 +33,49 @@ header {
     justify-content: space-between;
     align-items: center;
     gap: 20px;
-    background: rgba(255,255,255,0.06);
-    backdrop-filter: blur(15px);
-    border-bottom: 1px solid rgba(255,255,255,0.1);
+    background: rgba(250, 250, 247, 0.95);
+    border-bottom: 1px solid #D8D5CC;
     position: sticky;
     top: 0;
     z-index: 100;
+    backdrop-filter: blur(12px);
 }
 
 .logo {
     font-size: 26px;
     font-weight: bold;
     white-space: nowrap;
+    color: #202723;
 }
 
 .logo span {
-    color: #8b5cf6;
+    color: #245F50;
 }
 
 nav {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 8px;
 }
 
 nav a {
-    color: white;
+    color: #37413C;
     text-decoration: none;
-    padding: 8px 10px;
-    border-radius: 8px;
+    padding: 9px 12px;
+    border-radius: 10px;
     transition: 0.2s;
 }
 
 nav a:hover {
-    background: rgba(255,255,255,0.1);
+    background: #F3F1E8;
+    color: #245F50;
 }
 
-/* MAIN CONTAINER */
+
+/* =================================================
+   MAIN CONTAINER
+   ================================================= */
 
 .container {
     width: 90%;
@@ -72,7 +83,10 @@ nav a:hover {
     margin: auto;
 }
 
-/* HERO */
+
+/* =================================================
+   HERO
+   ================================================= */
 
 .hero {
     min-height: 80vh;
@@ -91,26 +105,25 @@ nav a:hover {
     display: inline-block;
     padding: 8px 15px;
     border-radius: 30px;
-    background: rgba(139,92,246,0.2);
-    color: #c4b5fd;
+    background: #E5F0EB;
+    color: #245F50;
     margin-bottom: 20px;
+    font-weight: 600;
 }
 
 h1 {
     font-size: clamp(42px, 8vw, 75px);
-    line-height: 1;
+    line-height: 1.05;
     margin-bottom: 25px;
+    color: #202723;
 }
 
 .gradient-text {
-    background: linear-gradient(90deg, #a78bfa, #60a5fa);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+    color: #245F50;
 }
 
 .hero p {
-    color: #cbd5e1;
+    color: #6D756F;
     font-size: 18px;
     line-height: 1.7;
 }
@@ -119,15 +132,20 @@ h1 {
     margin-top: 30px;
 }
 
+
+/* =================================================
+   BUTTONS
+   ================================================= */
+
 .btn {
     display: inline-block;
     padding: 14px 25px;
     border-radius: 12px;
     text-decoration: none;
-    color: white;
-    background: linear-gradient(90deg, #7c3aed, #2563eb);
+    color: #FFFFFF;
+    background: #245F50;
     margin: 5px;
-    border: none;
+    border: 1px solid #245F50;
     font-size: 16px;
     cursor: pointer;
     transition: 0.2s;
@@ -135,23 +153,40 @@ h1 {
 
 .btn:hover {
     transform: translateY(-2px);
-    opacity: 0.92;
+    background: #1D5043;
 }
 
 .btn.secondary {
-    background: rgba(255,255,255,0.08);
-    border: 1px solid rgba(255,255,255,0.15);
+    background: #FFFFFF;
+    color: #245F50;
+    border: 1px solid #C9CEC7;
 }
 
-/* CARDS */
+.btn.secondary:hover {
+    background: #F3F1E8;
+}
+
+.btn.orange {
+    background: #D99032;
+    border-color: #D99032;
+    color: #FFFFFF;
+}
+
+.btn.orange:hover {
+    background: #C67E27;
+}
+
+
+/* =================================================
+   CARDS
+   ================================================= */
 
 .card {
-    background: rgba(255,255,255,0.08);
-    border: 1px solid rgba(255,255,255,0.12);
+    background: #F3F1E8;
+    border: 1px solid #D8D5CC;
     border-radius: 25px;
     padding: 30px;
-    backdrop-filter: blur(20px);
-    box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+    box-shadow: 0 8px 25px rgba(32, 39, 35, 0.06);
 }
 
 .hero-card {
@@ -169,10 +204,14 @@ h1 {
     justify-content: center;
     font-size: 38px;
     font-weight: bold;
-    background: linear-gradient(135deg, #7c3aed, #2563eb);
+    background: #245F50;
+    color: #FFFFFF;
 }
 
-/* FEATURES */
+
+/* =================================================
+   FEATURES
+   ================================================= */
 
 .features {
     display: grid;
@@ -192,18 +231,23 @@ h1 {
 .feature h2 {
     font-size: 35px;
     margin-bottom: 15px;
+    color: #202723;
 }
 
 .feature h3 {
     margin-bottom: 10px;
+    color: #202723;
 }
 
 .feature p {
-    color: #cbd5e1;
+    color: #6D756F;
     line-height: 1.6;
 }
 
-/* FORMS */
+
+/* =================================================
+   FORMS
+   ================================================= */
 
 .form-box {
     max-width: 500px;
@@ -221,7 +265,8 @@ h1 {
 .form-group label {
     display: block;
     margin-bottom: 8px;
-    color: #e2e8f0;
+    color: #37413C;
+    font-weight: 600;
 }
 
 .form-group input,
@@ -230,9 +275,9 @@ h1 {
     width: 100%;
     padding: 14px;
     border-radius: 10px;
-    border: 1px solid rgba(255,255,255,0.15);
-    background: rgba(255,255,255,0.08);
-    color: white;
+    border: 1px solid #CFCBC1;
+    background: #FFFFFF;
+    color: #202723;
     outline: none;
     font-size: 16px;
 }
@@ -240,7 +285,8 @@ h1 {
 .form-group input:focus,
 .form-group textarea:focus,
 .form-group select:focus {
-    border-color: #8b5cf6;
+    border-color: #245F50;
+    box-shadow: 0 0 0 3px rgba(36, 95, 80, 0.10);
 }
 
 .form-group textarea {
@@ -253,7 +299,10 @@ h1 {
     cursor: pointer;
 }
 
-/* DASHBOARD */
+
+/* =================================================
+   DASHBOARD
+   ================================================= */
 
 .dashboard {
     padding: 50px 0;
@@ -261,6 +310,7 @@ h1 {
 
 .dashboard h1 {
     font-size: 45px;
+    color: #202723;
 }
 
 .dashboard-grid {
@@ -272,7 +322,7 @@ h1 {
 
 .dashboard-card {
     text-decoration: none;
-    color: white;
+    color: #202723;
     transition: 0.2s;
     display: block;
 }
@@ -288,14 +338,18 @@ h1 {
 
 .dashboard-card h3 {
     margin-bottom: 8px;
+    color: #202723;
 }
 
 .dashboard-card p {
-    color: #cbd5e1;
+    color: #6D756F;
     line-height: 1.5;
 }
 
-/* SEARCH */
+
+/* =================================================
+   SEARCH
+   ================================================= */
 
 .search-box {
     display: flex;
@@ -307,21 +361,489 @@ h1 {
     flex: 1;
     padding: 14px;
     border-radius: 10px;
-    border: 1px solid rgba(255,255,255,0.15);
-    background: rgba(255,255,255,0.08);
-    color: white;
+    border: 1px solid #CFCBC1;
+    background: #FFFFFF;
+    color: #202723;
     outline: none;
 }
 
-/* FOOTER */
+.search-box input:focus {
+    border-color: #245F50;
+}
+
+
+/* =================================================
+   PLACEMENT SECTION
+   ================================================= */
+
+.placement-page {
+    padding: 50px 0;
+}
+
+.placement-header {
+    margin-bottom: 35px;
+}
+
+.placement-header h1 {
+    margin-bottom: 10px;
+}
+
+.placement-header p {
+    color: #6D756F;
+    font-size: 17px;
+}
+
+
+/* Placement statistics */
+
+.placement-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    margin-bottom: 35px;
+}
+
+.placement-stat {
+    background: #F3F1E8;
+    border: 1px solid #D8D5CC;
+    border-radius: 20px;
+    padding: 22px;
+}
+
+.placement-stat .stat-number {
+    font-size: 32px;
+    font-weight: bold;
+    color: #245F50;
+    margin-bottom: 5px;
+}
+
+.placement-stat .stat-label {
+    color: #6D756F;
+    font-size: 14px;
+}
+
+
+/* Placement grid */
+
+.placement-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 22px;
+    margin-bottom: 25px;
+}
+
+.placement-section {
+    background: #F3F1E8;
+    border: 1px solid #D8D5CC;
+    border-radius: 24px;
+    padding: 25px;
+}
+
+.placement-section h2 {
+    color: #202723;
+    margin-bottom: 8px;
+}
+
+.placement-section > p {
+    color: #6D756F;
+    margin-bottom: 20px;
+}
+
+
+/* Placement job card */
+
+.placement-job {
+    background: #FFFFFF;
+    border: 1px solid #DDDAD1;
+    border-radius: 18px;
+    padding: 20px;
+    margin-bottom: 15px;
+}
+
+.placement-job:last-child {
+    margin-bottom: 0;
+}
+
+.placement-job h3 {
+    color: #202723;
+    margin-bottom: 5px;
+}
+
+.placement-job .company {
+    color: #245F50;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.placement-job .details {
+    color: #6D756F;
+    font-size: 14px;
+    margin-bottom: 12px;
+}
+
+
+/* Job tags */
+
+.job-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin: 10px 0;
+}
+
+.job-tag {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 20px;
+    background: #E5F0EB;
+    color: #245F50;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+
+/* Placement readiness */
+
+.readiness-card {
+    text-align: center;
+}
+
+.readiness-score {
+    font-size: 48px;
+    font-weight: bold;
+    color: #245F50;
+    margin: 10px 0;
+}
+
+.progress {
+    width: 100%;
+    height: 12px;
+    background: #DCD9CF;
+    border-radius: 20px;
+    overflow: hidden;
+    margin: 15px 0;
+}
+
+.progress-bar {
+    height: 100%;
+    background: #245F50;
+    border-radius: 20px;
+}
+
+.progress-bar.orange {
+    background: #D99032;
+}
+
+
+/* =================================================
+   SKILL PROGRESS CARDS
+   ================================================= */
+
+.skill-progress-card {
+    background: #F3F1E8;
+    border: 1px solid #D8D5CC;
+    border-radius: 24px;
+    padding: 25px;
+    margin-bottom: 20px;
+}
+
+.skill-progress-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.skill-progress-header h3 {
+    color: #202723;
+}
+
+.skill-percentage {
+    color: #245F50;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.skill-progress-card.orange .skill-percentage {
+    color: #D99032;
+}
+
+.skill-progress-info {
+    color: #6D756F;
+    margin-top: 10px;
+}
+
+
+/* =================================================
+   PLACEMENT PREPARATION
+   ================================================= */
+
+.preparation-list {
+    list-style: none;
+}
+
+.preparation-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid #DDDAD1;
+}
+
+.preparation-item:last-child {
+    border-bottom: none;
+}
+
+.preparation-icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #E5F0EB;
+    color: #245F50;
+    font-weight: bold;
+}
+
+.preparation-icon.pending {
+    background: #F4E4CE;
+    color: #D99032;
+}
+
+
+/* =================================================
+   APPLICATION TRACKER
+   ================================================= */
+
+.application-tracker {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.application-stage {
+    text-align: center;
+    padding: 15px 8px;
+    background: #FFFFFF;
+    border: 1px solid #DDDAD1;
+    border-radius: 14px;
+}
+
+.application-stage .stage-number {
+    font-size: 22px;
+    font-weight: bold;
+    color: #245F50;
+}
+
+.application-stage .stage-name {
+    font-size: 12px;
+    color: #6D756F;
+    margin-top: 5px;
+}
+
+
+/* =================================================
+   JOB CARDS - EXISTING JOBS PAGE
+   ================================================= */
+
+.job-card {
+    background: #F3F1E8;
+    border: 1px solid #D8D5CC;
+    border-radius: 22px;
+    padding: 25px;
+    margin-bottom: 20px;
+}
+
+.job-card h2,
+.job-card h3 {
+    color: #202723;
+}
+
+.job-card p {
+    color: #6D756F;
+    margin: 7px 0;
+}
+
+.job-card .company {
+    color: #245F50;
+    font-weight: bold;
+}
+
+
+/* =================================================
+   ASSESSMENT
+   ================================================= */
+
+.assessment-card {
+    background: #F3F1E8;
+    border: 1px solid #D8D5CC;
+    border-radius: 24px;
+    padding: 28px;
+    margin-bottom: 20px;
+}
+
+.question {
+    margin-bottom: 25px;
+}
+
+.question h3 {
+    color: #202723;
+    margin-bottom: 15px;
+}
+
+.option {
+    display: block;
+    background: #FFFFFF;
+    border: 1px solid #DDDAD1;
+    border-radius: 12px;
+    padding: 12px 15px;
+    margin-bottom: 8px;
+    cursor: pointer;
+    color: #37413C;
+    transition: 0.2s;
+}
+
+.option:hover {
+    border-color: #245F50;
+    background: #F8F8F3;
+}
+
+
+/* =================================================
+   ASSESSMENT RESULT
+   ================================================= */
+
+.result-card {
+    max-width: 650px;
+    margin: 60px auto;
+    text-align: center;
+    background: #F3F1E8;
+    border: 1px solid #D8D5CC;
+    border-radius: 28px;
+    padding: 40px;
+}
+
+.result-score {
+    font-size: 60px;
+    font-weight: bold;
+    color: #245F50;
+    margin: 15px 0;
+}
+
+.result-level {
+    display: inline-block;
+    padding: 8px 18px;
+    border-radius: 30px;
+    background: #E5F0EB;
+    color: #245F50;
+    font-weight: bold;
+    margin: 10px 0 20px;
+}
+
+
+/* =================================================
+   RESUME / PROFILE
+   ================================================= */
+
+.profile-card,
+.resume-card {
+    background: #F3F1E8;
+    border: 1px solid #D8D5CC;
+    border-radius: 24px;
+    padding: 30px;
+    margin-bottom: 25px;
+}
+
+.profile-card h2,
+.resume-card h2 {
+    color: #202723;
+    margin-bottom: 15px;
+}
+
+.profile-info {
+    color: #6D756F;
+    line-height: 1.7;
+}
+
+
+/* =================================================
+   SAVED JOBS
+   ================================================= */
+
+.saved-job {
+    background: #F3F1E8;
+    border: 1px solid #D8D5CC;
+    border-radius: 22px;
+    padding: 25px;
+    margin-bottom: 18px;
+}
+
+.saved-job h3 {
+    color: #202723;
+}
+
+.saved-job p {
+    color: #6D756F;
+}
+
+
+/* =================================================
+   FOOTER
+   ================================================= */
 
 footer {
     text-align: center;
-    padding: 30px;
-    color: #94a3b8;
+    padding: 40px 20px;
+    color: #6D756F;
+    border-top: 1px solid #E1DED5;
+    margin-top: 40px;
 }
 
-/* MOBILE */
+
+/* =================================================
+   LINKS
+   ================================================= */
+
+a {
+    color: #245F50;
+}
+
+a:hover {
+    color: #1D5043;
+}
+
+
+/* =================================================
+   SMALL LABELS / BADGES
+   ================================================= */
+
+.badge-green {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 20px;
+    background: #E5F0EB;
+    color: #245F50;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.badge-orange {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 20px;
+    background: #F4E4CE;
+    color: #A96820;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+
+/* =================================================
+   MOBILE
+   ================================================= */
 
 @media (max-width: 750px) {
 
@@ -395,7 +917,30 @@ footer {
     h1 {
         font-size: 42px;
     }
+
+    /* Placement mobile */
+
+    .placement-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .placement-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .application-tracker {
+        grid-template-columns: 1fr;
+    }
+
+    .skill-progress-header {
+        align-items: flex-start;
+    }
 }
+
+
+/* =================================================
+   SMALL PHONES
+   ================================================= */
 
 @media (max-width: 400px) {
 
@@ -410,4 +955,16 @@ footer {
     .dashboard h1 {
         font-size: 32px;
     }
+
+    .placement-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .placement-section,
+    .assessment-card,
+    .profile-card,
+    .resume-card {
+        padding: 20px;
+    }
 }
+

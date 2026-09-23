@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Assessment Result | SkillBridge</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+
+<body>
+
+<header>
+
+    <div class="logo">
+        Skill<span>Bridge</span>
+    </div>
+
+    <nav>
+
+        <a href="/dashboard">
+            Dashboard
+        </a>
+
+        <a href="/skills">
+            Skills
+        </a>
+
+        <a href="/jobs">
+            Jobs
+        </a>
+
+        <a href="/profile">
+            Profile
+        </a>
+
+        <a href="/logout">
+            Logout
+        </a>
+
+    </nav>
+
+</header>
+
+
+<main class="container dashboard">
+
+    <div class="badge">
+        ASSESSMENT RESULT
+    </div>
+
+
+    <h1>
+        Your Skill Assessment Result 🎉
+    </h1>
+
+
+    <p style="color:#cbd5e1;
+              font-size:18px;
+              line-height:1.6;">
+
+        Here is your assessment result.
+
+    </p>
+
+
+    <div class="card"
+         style="margin-top:30px;
+                text-align:center;">
+
+        <h2>
+            ⭐ {{ points }} / {{ max_points }} Points
+        </h2>
+
+
+        <p style="color:#cbd5e1;
+                  font-size:20px;
+                  margin-top:20px;">
+
+            Score: {{ score }} / {{ total }}
+
+        </p>
+
+
+        <p style="color:#cbd5e1;
+                  font-size:20px;
+                  margin-top:15px;">
+
+            Percentage: {{ percentage }}%
+
+        </p>
+
+
+        <div class="badge"
+             style="margin-top:25px;">
+
+            Skill Level: {{ level }}
+
+        </div>
+
+    </div>
+
+
+    <div class="card"
+         style="margin-top:25px;">
+
+        <h2>
+            🚀 What next?
+        </h2>
+
+        <p style="color:#cbd5e1;
+                  line-height:1.7;
+                  margin-top:15px;">
+
+            Continue learning new skills,
+            practice with projects and explore
+            placement opportunities.
+
+        </p>
+
+
+        <div style="margin-top:25px;">
+
+            <a href="/assessment"
+               class="btn">
+
+                🔄 Take Assessment Again
+
+            </a>
+
+
+            <a href="/skills"
+               class="btn secondary">
+
+                🎓 Learn Skills
+
+            </a>
+
+
+            <a href="/jobs"
+               class="btn secondary">
+
+                💼 Explore Jobs
+
+            </a>
+
+        </div>
+
+    </div>
+
+</main>
+
+
+<footer>
+
+    <p>
+        © 2026 SkillBridge
+    </p>
+
+    <p>
+        Learn • Build • Apply • Grow
+    </p>
+
+</footer>
+
+</body>
+
+</html>
+
